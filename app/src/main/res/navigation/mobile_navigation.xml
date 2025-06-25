@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navBeranda">
+
+    <fragment
+        android:id="@+id/navBeranda"
+        android:name="edu.uph.m23si1.eunoia.ui.beranda.BerandaFragment"
+        android:label="Beranda"
+        tools:layout="@layout/fragment_beranda" />
+
+    <fragment
+        android:id="@+id/navTest"
+        android:name="edu.uph.m23si1.eunoia.ui.test.TestFragment"
+        android:label="Test"
+        tools:layout="@layout/fragment_test" />
+
+    <fragment
+        android:id="@+id/navKonsul"
+        android:name="edu.uph.m23si1.eunoia.ui.konsul.KonsulFragment"
+        android:label="Konsultasi"
+        tools:layout="@layout/fragment_konsul" />
+
+    <fragment
+        android:id="@+id/navHistori"
+        android:name="edu.uph.m23si1.eunoia.ui.test.TestFragment"
+        android:label="Histori"
+        tools:layout="@layout/fragment_histori" />
+</navigation>

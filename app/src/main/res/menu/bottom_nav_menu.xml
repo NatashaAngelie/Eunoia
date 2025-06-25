@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navBeranda"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="Beranda" />
+
+    <item
+        android:id="@+id/navTest"
+        android:icon="@drawable/tes"
+        android:title="Test" />
+
+    <item
+        android:id="@+id/navKonsul"
+        android:icon="@drawable/konsul"
+        android:title="Konsultasi" />
+
+    <item
+        android:id="@+id/navHistori"
+        android:icon="@drawable/histori"
+        android:title="Histori" />
+
+</menu>
