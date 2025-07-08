@@ -61,9 +61,10 @@ public class LoginActivity extends AppCompatActivity {
             String password = edtPassword.getText().toString();
             String email = edtEmail.getText().toString();
             if(username.toLowerCase().equals("natasha") && email.equals("03081230003@student.uph.edu") && password.toLowerCase().equals("03081230003")) {
-            Intent intent = new Intent(this, DashboardActivity.class);
-            intent.putExtra("username", username);
-            startActivity(intent);
+                getSharedPreferences("user_session", MODE_PRIVATE).edit().putString("namaPasien", username).apply();
+                Intent intent = new Intent(this, DashboardActivity.class);
+                intent.putExtra("username", username);
+                startActivity(intent);
             }else{
                 Toast toast = Toast.makeText(getApplication(), "Akun Tidak terdaftar", Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 0);

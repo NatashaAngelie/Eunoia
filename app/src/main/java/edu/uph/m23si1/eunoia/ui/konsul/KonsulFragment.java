@@ -1,5 +1,6 @@
 package edu.uph.m23si1.eunoia.ui.konsul;
 
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -14,11 +15,14 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import edu.uph.m23si1.eunoia.ui.konsul.Psikolog;
+import edu.uph.m23si1.eunoia.adapter.PsikologAdapter;
+import edu.uph.m23si1.eunoia.model.Psikolog;
 import edu.uph.m23si1.eunoia.R;
 import edu.uph.m23si1.eunoia.databinding.FragmentKonsulBinding;
 
@@ -36,16 +40,37 @@ public class KonsulFragment extends Fragment {
         binding = FragmentKonsulBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-        containerPsikolog = view.findViewById(R.id.containerPsikolog);
+//        containerPsikolog = view.findViewById(R.id.containerPsikolog);
         edtSearch = view.findViewById(R.id.edtSearch); // ganti sesuai ID EditText kamu
 
         // Tambahkan data dummy
         semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
         semuaPsikolog.add(new Psikolog("Dr. Dinda Meli, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. Arvindo, S.Psi., M.Psi.", R.drawable.psikolog));
         semuaPsikolog.add(new Psikolog("Dr. Ezra Adita, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. Aurel Syah, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
+        semuaPsikolog.add(new Psikolog("Dr. John Doe, S.Psi., M.Psi.", R.drawable.psikolog));
         // dst...
 
-        tampilkanPsikolog(semuaPsikolog);
+//        tampilkanPsikolog(semuaPsikolog);
+
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerPsikolog);
+        PsikologAdapter adapter = new PsikologAdapter(requireContext(), semuaPsikolog);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Jarak antar item
+        recyclerView.addItemDecoration(new RecyclerView.ItemDecoration() {
+            @Override
+            public void getItemOffsets(@NonNull Rect outRect, @NonNull View view,
+                                       @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
+                outRect.bottom = 3;
+            }
+        });
 
         // Fitur Search
         edtSearch.addTextChangedListener(new TextWatcher() {
@@ -57,7 +82,7 @@ public class KonsulFragment extends Fragment {
                         hasil.add(p);
                     }
                 }
-                tampilkanPsikolog(hasil);
+                adapter.updateList(hasil);
             }
 
             @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -67,25 +92,25 @@ public class KonsulFragment extends Fragment {
         return view;
     }
 
-    private void tampilkanPsikolog(List<Psikolog> daftar) {
-        containerPsikolog.removeAllViews(); // Bersihkan dulu
-        for (Psikolog p : daftar) {
-            View item = getLayoutInflater().inflate(R.layout.list_psikolog, null);
-
-            ImageView imgFoto = item.findViewById(R.id.imgFoto);
-            TextView txtNama = item.findViewById(R.id.txtNama);
-
-            imgFoto.setImageResource(p.getFotoResId());
-            txtNama.setText(p.getNama());
-
-            // Event klik
-            item.setOnClickListener(v -> {
-                Toast.makeText(getContext(), "Kamu pilih: " + p.getNama(), Toast.LENGTH_SHORT).show();
-            });
-
-            containerPsikolog.addView(item);
-        }
-    }
+//    private void tampilkanPsikolog(List<Psikolog> daftar) {
+//        containerPsikolog.removeAllViews(); // Bersihkan dulu
+//        for (Psikolog p : daftar) {
+//            View item = getLayoutInflater().inflate(R.layout.list_psikolog, null);
+//
+//            ImageView imgFoto = item.findViewById(R.id.imgFoto);
+//            TextView txtNama = item.findViewById(R.id.txtNama);
+//
+//            imgFoto.setImageResource(p.getFotoResId());
+//            txtNama.setText(p.getNama());
+//
+//            // Event klik
+//            item.setOnClickListener(v -> {
+//                Toast.makeText(getContext(), "Kamu pilih: " + p.getNama(), Toast.LENGTH_SHORT).show();
+//            });
+//
+//            containerPsikolog.addView(item);
+//        }
+//    }
 
     @Override
     public void onDestroyView() {

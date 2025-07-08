@@ -67,6 +67,7 @@
                     android:orientation="horizontal"
                     android:background="@drawable/edt_border"
                     android:layout_marginBottom="20dp"
+                    android:padding="5dp"
                     android:elevation="5dp">
 
                     <ImageView
@@ -83,9 +84,9 @@
                         android:layout_height="wrap_content"
                         android:ems="10"
                         android:inputType="text"
-                        android:text="Search"
+                        android:hint="Search"
                         android:padding="10dp"
-                        android:background="null"/>
+                        android:background="@color/white"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -100,7 +101,7 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerPsikolog"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginTop="10dp"
                     />
                 </LinearLayout>

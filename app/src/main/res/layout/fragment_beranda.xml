@@ -158,7 +158,10 @@
                         android:layout_marginBottom="20dp"
                         android:background="@drawable/edt_border"
                         android:padding="50dp"
-                        android:text="TextView"
+                        android:text="Langit nggak selalu cerah, tapi pelangi datang setelah hujan."
+                        android:textStyle="bold"
+                        android:textSize="8pt"
+                        android:textColor="@color/black"
                         android:textAlignment="center" />
 
                     <TextView
@@ -218,7 +221,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="135.5dp"
                             android:src="@drawable/artikel2" />
-
+                        <TextView
+                            android:id="@+id/textView12"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:paddingLeft="15dp"
+                            android:text="Ini 8 Tanda dan Gejala Depresi, Jangan Disepelekan!"
+                            android:textColor="@color/black"
+                            android:textSize="18dp" />
                         <TextView
                             android:id="@+id/txtLink2"
                             android:layout_width="match_parent"

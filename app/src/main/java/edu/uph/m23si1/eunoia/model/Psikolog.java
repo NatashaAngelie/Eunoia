@@ -1,4 +1,4 @@
-package edu.uph.m23si1.eunoia.ui.konsul;
+package edu.uph.m23si1.eunoia.model;
 
 public class Psikolog {
     private String nama;

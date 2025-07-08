@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "462589970706",
+    "project_id": "chateunoia",
+    "storage_bucket": "chateunoia.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:462589970706:android:349530d476a55f91914bcb",
+        "android_client_info": {
+          "package_name": "edu.uph.m23si1.eunoia"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJfKnnVkI_hDe-1cSaptdr3c1TSFi73SE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
