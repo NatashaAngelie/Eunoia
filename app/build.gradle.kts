@@ -1,9 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.kotlin.compose)
     id("com.google.gms.google-services")
 }
+apply(plugin = "realm-android") // Wajib agar Realm aktif
 
 android {
     namespace = "edu.uph.m23si1.eunoia"
@@ -11,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId = "edu.uph.m23si1.eunoia"
-        minSdk = 28
+        minSdk = 26
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -32,9 +31,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
-    kotlinOptions {
-        jvmTarget = "11"
-    }
     buildFeatures {
         compose = true
         viewBinding = true
@@ -42,7 +38,7 @@ android {
 }
 
 dependencies {
-
+    implementation("io.realm:realm-android-library:10.15.1")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
