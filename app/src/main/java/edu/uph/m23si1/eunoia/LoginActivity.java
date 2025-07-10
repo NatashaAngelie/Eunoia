@@ -14,9 +14,18 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+import io.realm.RealmResults;
+import edu.uph.m23si1.eunoia.model.Akun;
+
 public class LoginActivity extends AppCompatActivity {
-    EditText edtUsername, edtEmail, edtPassword;
+    EditText edtEmail, edtPassword;
     Button btnLogin;
+    Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,47 +38,84 @@ public class LoginActivity extends AppCompatActivity {
             return insets;
         });
 
-        edtUsername = findViewById(R.id.edtUsername);
+        Realm.init(getApplicationContext());
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("akun.realm")
+                .schemaVersion(1)
+                .allowWritesOnUiThread(true) // sementara aktifkan untuk demo
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
+        initData();
+        realm = Realm.getDefaultInstance();
+
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                checkUser();
+        btnLogin.setOnClickListener(v -> {
+            String email = edtEmail.getText().toString().trim();
+            String password = edtPassword.getText().toString().trim();
+
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Email dan password tidak boleh kosong", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // cek di Realm
+            Akun akun = realm.where(Akun.class)
+                    .equalTo("email", email)
+                    .equalTo("password", password)
+                    .findFirst();
+
+            if (akun != null) {
+                // login berhasil
+                Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
+
+                String namaLengkap = akun.getNamaLengkap();
+                String username = akun.getUsername();
+                Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
+                intent.putExtra("namaLengkap", namaLengkap);
+                intent.putExtra("username", username);
+                startActivity(intent);
+                finish();
+            } else {
+                Toast.makeText(this, "Email atau password tidak terdaftar", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-    public boolean ValidasiData() {
-        if (edtUsername.getText().toString().equals("")) {
-            edtUsername.setError("Username harus diisi");
-            return false;
-        }else if (edtEmail.getText().toString().equals("")) {
-            edtEmail.setError("Email harus diisi");
-            return false;
-        }else if (edtPassword.getText().toString().equals("")) {
-            edtPassword.setError("Password harus diisi");
-            return false;
+    public void initData(){
+        Realm realm = Realm.getDefaultInstance();
+
+        // cek dulu apakah sudah ada data
+        long count = realm.where(Akun.class).count();
+        if (count > 0) {
+            return; // sudah ada data, tidak perlu isi lagi
         }
-        return true;
+
+        List<Akun> daftarAkun = new ArrayList<>();
+
+        daftarAkun.add(new Akun("icha.septina@gmail.com", "12345", "", "Icha Septina", "Psikologi", 18, "Perempuan"));
+        daftarAkun.add(new Akun("yovara.sepp@gmail.com", "12345", "", "Asep Yovara", "Teknik Informatika", 19, "Laki-laki"));
+        daftarAkun.add(new Akun("seny.caroline@gmail.com", "12345", "", "Seni Caroline", "Ilmu Komunikasi", 20, "Perempuan"));
+        daftarAkun.add(new Akun("rea.parulian@gmail.com", "12345", "", "Rea Parulian", "Kedokteran", 22, "Perempuan"));
+        daftarAkun.add(new Akun("rhoma@gmail.com", "12345", "", "Rhoma", "Hukum", 23, "Laki-laki"));
+        daftarAkun.add(new Akun("irham089@gmail.com", "12345", "", "Irham", "Manajemen", 19, "Laki-laki"));
+        daftarAkun.add(new Akun("teti.supratto@gmail.com", "12345", "", "Teti Supratto", "Akuntansi", 18, "Laki-laki"));
+        daftarAkun.add(new Akun("susan.min@gmail.com", "12345", "", "Susan Min", "Farmasi", 21, "Perempuan"));
+        daftarAkun.add(new Akun("mahesa@gmail.com", "12345", "", "Mahesa", "Arsitektur", 22, "Perempuan"));
+        daftarAkun.add(new Akun("sujan.pasmir@gmail.com", "12345", "", "Sujan Pasmir", "Teknik Mesin", 20, "Laki-laki"));
+// Masukkan ke Realm
+        realm.executeTransaction(r -> {
+            r.insert(daftarAkun);
+        });
     }
 
-    public void checkUser(){
-        if (ValidasiData()) {
-            String username = edtUsername.getText().toString();
-            String password = edtPassword.getText().toString();
-            String email = edtEmail.getText().toString();
-            if(username.toLowerCase().equals("natasha") && email.equals("03081230003@student.uph.edu") && password.toLowerCase().equals("03081230003")) {
-                getSharedPreferences("user_session", MODE_PRIVATE).edit().putString("namaPasien", username).apply();
-                Intent intent = new Intent(this, DashboardActivity.class);
-                intent.putExtra("username", username);
-                startActivity(intent);
-            }else{
-                Toast toast = Toast.makeText(getApplication(), "Akun Tidak terdaftar", Toast.LENGTH_LONG);
-                toast.setGravity(Gravity.BOTTOM | Gravity.RIGHT, 0, 0);
-                toast.show();
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (realm != null) {
+            realm.close();
         }
     }
 }

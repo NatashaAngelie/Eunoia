@@ -30,8 +30,6 @@ public class BerandaFragment extends Fragment {
         binding = FragmentBerandaBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        String username = getActivity().getIntent().getStringExtra("username");
-
         txtHello = root.findViewById(R.id.txtHello);
         txtLink1 = root.findViewById(R.id.txtLink1);
         txtLink2 = root.findViewById(R.id.txtLink2);
@@ -42,9 +40,15 @@ public class BerandaFragment extends Fragment {
         llyMood4 = root.findViewById(R.id.llyMood4);
         llyMood5 = root.findViewById(R.id.llyMood5);
 
-        if (username != null) {
-            txtHello.setText("Hello, " + username + "!");
-        }
+        String username = getActivity().getIntent().getStringExtra("username");
+        String namaLengkap = getActivity().getIntent().getStringExtra("namaLengkap");
+
+        String sapaan = username != null && !username.isEmpty()
+                ? username
+                : (namaLengkap != null && !namaLengkap.isEmpty() ? namaLengkap : "Pengguna");
+
+        txtHello.setText("Halo, " + sapaan + "!");
+
 
         LinearLayout[] moods = new LinearLayout[] {
                 binding.llyMood1, binding.llyMood2, binding.llyMood3, binding.llyMood4, binding.llyMood5
