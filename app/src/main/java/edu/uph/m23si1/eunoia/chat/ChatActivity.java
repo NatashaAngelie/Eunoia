@@ -1,5 +1,7 @@
 package edu.uph.m23si1.eunoia.chat;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -10,26 +12,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import edu.uph.m23si1.eunoia.R;
-import edu.uph.m23si1.eunoia.ui.konsul.KonsulFragment;
-
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.HashMap;
-import java.util.Map;
+import edu.uph.m23si1.eunoia.model.Chat;
+import edu.uph.m23si1.eunoia.model.Tes;
+import io.realm.Realm;
+import io.realm.Sort;
 
 public class ChatActivity extends AppCompatActivity {
 
-    LinearLayout chatContainer, llySend, llyBack;
+    LinearLayout chatContainer, llySend, llyBack, llyChatHasilTes, llyBoxHasil;
     EditText edtChat;
     ScrollView chatScroll;
-    TextView txvNamaPsi;
-    DatabaseReference chatRef;
+    TextView txvNamaPsi, txvChatPembuka, txvSkorStatus;
     String namaPasien;
     String nama;
+    Realm realm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,56 +38,82 @@ public class ChatActivity extends AppCompatActivity {
         chatScroll = findViewById(R.id.chatScroll);
         llySend = findViewById(R.id.llySend);
         llyBack = findViewById(R.id.llyBack);
+        txvChatPembuka = findViewById(R.id.txvChatPembuka);
+        llyChatHasilTes = findViewById(R.id.llyChatHasilTes);
+        llyBoxHasil = findViewById(R.id.llyBoxHasil);
+        txvSkorStatus = findViewById(R.id.txvSkorStatus);
 
         nama = getIntent().getStringExtra("namaPsikolog");
         namaPasien = getSharedPreferences("user_session", MODE_PRIVATE).getString("namaPasien", null);
 
+        realm = Realm.getDefaultInstance();
+
+        // Cek hasil tes terbaru
+        Tes hasilTerakhir = realm.where(Tes.class)
+                .sort("id", Sort.DESCENDING)
+                .findFirst();
+
+        if (hasilTerakhir == null) {
+            // kalau tidak ada hasil tes
+            llyChatHasilTes.setVisibility(View.GONE);
+            txvChatPembuka.setText("Halo dok, saya ingin konsultasi sebentar untuk menjaga supaya tidak sampai mengalami depresi. Boleh bantu saya, ya?");
+        } else {
+            llyChatHasilTes.setVisibility(View.VISIBLE);
+            txvChatPembuka.setText("Halo dok, saya baru saja melihat hasil tes saya. Jujur saya agak bingung dan ingin tahu maksudnya serta apa yang harus saya lakukan. Bisa bantu jelaskan?");
+
+            String teks = "Skor Pasien : " + hasilTerakhir.getSkor() +
+                    "\nStatus: " + hasilTerakhir.getStatus();
+            txvSkorStatus.setText(teks);
+
+            if (hasilTerakhir.getSkor() <= 33) {
+                // Tidak Depresi
+                llyBoxHasil.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#CEEDC0")) // hijau
+                );
+            } else if (hasilTerakhir.getSkor() <= 66) {
+                // Waspada
+                llyBoxHasil.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD98D")) // kuning
+                );
+            } else {
+                // Depresi
+                llyBoxHasil.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#FFD7D7")) // merah muda
+                );
+            }
+        }
 
         txvNamaPsi.setText(nama);
 
-        llyBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toKonsul();
-            }
-        });
+        llyBack.setOnClickListener(v -> finish());
 
         llySend.setOnClickListener(v -> {
             String pesan = edtChat.getText().toString().trim();
             if (!pesan.isEmpty()) {
-                String key = chatRef.push().getKey();
-                Map<String, Object> data = new HashMap<>();
-                data.put("sender", namaPasien);
-                data.put("message", pesan);
-                chatRef.child(key).setValue(data);
-
-                edtChat.setText(""); // kosongkan input
+                tambahPesanUser(pesan, namaPasien);
+                simpanPesan(pesan, namaPasien);
+                edtChat.setText("");
                 scrollKeBawah();
             }
         });
+        muatHistoriChat();
+    }
+    private void muatHistoriChat() {
+        for (Chat chat : realm.where(Chat.class).findAll()) {
+            tambahPesanUser(chat.getMessage(), chat.getSender());
+        }
+        scrollKeBawah();
+    }
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        chatRef = database.getReference("chat_rooms").child(simpleSanitize(namaPasien) + "_" + simpleSanitize(nama));
+    private void simpanPesan(String pesan, String sender) {
+        realm.executeTransaction(r -> {
+            Number currentId = r.where(Chat.class).max("id");
+            long nextId = (currentId == null) ? 1 : currentId.longValue() + 1;
 
-        chatRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot snapshot, String previousChildName) {
-                String sender = snapshot.child("sender").getValue(String.class);
-                String pesan = snapshot.child("message").getValue(String.class);
-                tambahPesanUser(pesan, sender);
-                scrollKeBawah();
-            }
-
-            @Override public void onChildChanged(DataSnapshot snapshot, String previousChildName) {}
-            @Override public void onChildRemoved(DataSnapshot snapshot) {}
-            @Override public void onChildMoved(DataSnapshot snapshot, String previousChildName) {}
-            @Override public void onCancelled(DatabaseError error) {}
+            Chat chat = r.createObject(Chat.class, nextId);
+            chat.setSender(sender);
+            chat.setMessage(pesan);
+            chat.setTimestamp(System.currentTimeMillis());
         });
+    }
 
-    }
-    private String simpleSanitize(String input) {
-        return input.replace(".", "_");
-    }
     private void tambahPesanUser(String teks, String sender) {
         // Buat TextView baru untuk pesan
         TextView pesanView = new TextView(this);
@@ -112,10 +134,6 @@ public class ChatActivity extends AppCompatActivity {
         pesanView.setLayoutParams(params);
 
         chatContainer.addView(pesanView);
-
-    }
-    public void toKonsul() {
-        finish();
     }
     private void scrollKeBawah() {
         chatScroll.post(() -> chatScroll.fullScroll(View.FOCUS_DOWN));
