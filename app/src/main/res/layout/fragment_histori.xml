@@ -8,30 +8,193 @@
     android:background="@drawable/gradient">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/mint_blue"
-        android:orientation="horizontal"
-        android:padding="3dp">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/logo" />
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/mint_blue"
+            android:orientation="horizontal"
+            android:padding="3dp">
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="600dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:paddingLeft="10dp"
-            android:text="Histori"
-            android:textColor="@color/black" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/logo" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="600dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingLeft="10dp"
+                android:text="Profil"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_marginLeft="8dp"
+                            android:src="@drawable/psikolog" />
+
+                        <LinearLayout
+                            android:id="@+id/llyEdit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginLeft="-30dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:src="@drawable/pensil" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/txvH1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginTop="20dp"
+                                android:text="Icha Septina"
+                                android:textColor="@color/black"
+                                android:textSize="10pt"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="10dp"
+                                android:text="19 Tahun | Perempuan" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:background="@drawable/rounded"
+                        android:backgroundTint="@color/white"
+                        android:orientation="vertical"
+                        android:padding="15dp">
+
+                        <TextView
+                            android:id="@+id/txvJumlah"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Jumlah Test: 3"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Test Terakhir"
+                            android:textColor="@color/black"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/txvTanggal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Tanggal: 28 Mei 2024"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/txvSkor"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Skor: 78"
+                            android:textColor="@color/black" />
+
+                        <TextView
+                            android:id="@+id/txvStatus"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Status: Depresi"
+                            android:textColor="@color/black" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginLeft="20dp"
+                            android:src="@drawable/histori" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="3dp"
+                            android:text="Histori"
+                            android:textColor="@color/black"
+                            android:textSize="7pt"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_marginTop="15dp">
+
+                        <ListView
+                            android:id="@+id/listHistori"
+                            android:layout_width="match_parent"
+                            android:layout_height="330dp"
+                            android:divider="@android:color/transparent"
+                            android:dividerHeight="10dp"
+                            android:paddingBottom="20dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+
+
+        </LinearLayout>
+
     </LinearLayout>
+
 
     <TextView
         android:id="@+id/text_histori"

@@ -150,6 +150,7 @@ public class TestFragment extends Fragment {
 
                     int skor = hitungSkor();
                     data.setSkor(skor);
+                    data.setStatus(hitungStatusDariSkor(skor)); // Tambahkan ini
 
                     // Update UI setelah transaksi selesai
                     requireActivity().runOnUiThread(() -> {
@@ -269,6 +270,15 @@ public class TestFragment extends Fragment {
         double progress = skb.getProgress();
         double value = (progress / 100.0) * 4.0;
         return (int) Math.round(value);
+    }
+    private String hitungStatusDariSkor(int skor) {
+        if (skor <= 33) {
+            return "Tidak Depresi";
+        } else if (skor <= 66) {
+            return "Waspada";
+        } else {
+            return "Depresi";
+        }
     }
     private void tampilkanHasil(int skor){
         llyForm.setVisibility(View.GONE);

@@ -11,4 +11,10 @@
     <color name="blue">#4A90E2</color>
     <color name="mint">#E4F0FF</color>
     <color name="grey">#26000000</color>
+    <color name="merah_muda">#FFD7D7</color>
+    <color name="yellow">#FFD98D</color>
+    <color name="green">#CEEDC0</color>
+    <color name="red">#9D030C</color>
+    <color name="brown">#634301</color>
+    <color name="deep_green">#1E5505</color>
 </resources>

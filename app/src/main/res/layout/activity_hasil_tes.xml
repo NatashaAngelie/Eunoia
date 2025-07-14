@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".HasilTesActivity">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/llyBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_gravity="left">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/back"
+                android:layout_gravity="center"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txtSkor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skor"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:layout_marginLeft="5dp"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/txtDetailJawaban"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Detail Jawaban"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ScrollView
+                android:id="@+id/llyForm"
+                android:layout_width="380dp"
+                android:layout_height="550dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rounded"
+                android:backgroundTint="#1A000000"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="15dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Jurusan"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtJurusan"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white"
+                        android:ems="10"
+                        android:hint="Masukkan jurusan Anda"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="7pt" />
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Umur"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtUmur"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white"
+                        android:ems="10"
+                        android:hint="Masukkan umur Anda"
+                        android:inputType="number"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="7pt" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Jenis Kelamin"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgGender"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp">
+
+                        <RadioButton
+                            android:id="@+id/rdbLaki"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Laki-laki" />
+
+                        <RadioButton
+                            android:id="@+id/rdbPerempuan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Perempuan" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvDemografi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Demografi"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgDemografi"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:paddingLeft="15dp">
+
+                        <RadioButton
+                            android:id="@+id/rdbDesa"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Pedesaan" />
+
+                        <RadioButton
+                            android:id="@+id/rdbKota"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Perkotaan" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvCGPA"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="CGPA"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgCGPA"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp">
+
+                        <RadioButton
+                            android:id="@+id/rdbTinggi"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="3.50 - 4.00" />
+
+                        <RadioButton
+                            android:id="@+id/rdbSedang"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="2.50 - 3.49" />
+
+                        <RadioButton
+                            android:id="@+id/rdbRendah"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="0.00 - 2.49" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvUang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Masalah Keuangan"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgUang"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="15dp">
+
+                        <RadioButton
+                            android:id="@+id/rdbUangSignifikan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Signifikan" />
+
+                        <RadioButton
+                            android:id="@+id/rdbUangSedang"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Sedang" />
+
+                        <RadioButton
+                            android:id="@+id/rdbUangRingan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-10dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ringan" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvHargai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Seberapa sering Anda merasa tidak didengar/dihargai?"
+                        android:textColor="@color/black" />
+
+                    <SeekBar
+                        android:id="@+id/skbTidakDihargai"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tidak pernah" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Sangat sering" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txvAbai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Seberapa sering Anda merasa diabaikan dalam interaksi sosial?"
+                        android:textColor="@color/black" />
+
+                    <SeekBar
+                        android:id="@+id/skbDiabaikan"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tidak pernah" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Sangat sering" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txvPenting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah Anda merasa keberadaanmu tidak penting bagi orang lain?"
+                        android:textColor="@color/black" />
+
+                    <SeekBar
+                        android:id="@+id/skbTidakPenting"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tidak pernah" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Sangat sering" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txvPerasaan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apa yang Anda rasakan saat ini?"
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtPerasaan"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white"
+                        android:ems="10"
+                        android:hint="Silahkan ungkapkan perasaan Anda"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="7pt" />
+
+                    <TextView
+                        android:id="@+id/txvBicara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Seberapa nyaman kamu berbicara tentang perasaanmu dengan anggota keluargamu?"
+                        android:textColor="@color/black" />
+
+                    <SeekBar
+                        android:id="@+id/skbNyamanBicara"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Sangan tidak nyaman" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Sangat nyaman" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/txvDiri"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah kamu bisa menjadi dirimu sendiri di rumah?"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgYNDiriSendiri"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rdbYDiriSendiri"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ya" />
+
+                        <RadioButton
+                            android:id="@+id/rdbNDiriSendiri"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Tidak" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvDukung"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah keluargamu memberikan dukungan ketika kamu dalam situasi yang sulit?"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgDukungan"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rdbYDukungan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ya" />
+
+                        <RadioButton
+                            android:id="@+id/rdbNDukungan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Tidak" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvOlahraga"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah Anda dapat merasa lebih baik setelah berolahraga ketika Anda sedang stress/banyak pikiran?"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgYNOlahraga"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rdbYOlahraga"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ya" />
+
+                        <RadioButton
+                            android:id="@+id/rdbNOlahraga"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Tidak" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvTidur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah Anda mengalami kesulitan untuk tidur?"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgYNTidur"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rdbYTidur"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ya" />
+
+                        <RadioButton
+                            android:id="@+id/rdbNTidur"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Tidak" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvJamTidur"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Silahkan tuliskan jam tidur Anda! "
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtJamTidur"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="Masukkan jam tidur Anda"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="7pt" />
+
+                    <TextView
+                        android:id="@+id/txvJamBangun"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Silahkan tuliskan jam bangun tidur Anda! "
+                        android:textColor="@color/black" />
+
+                    <EditText
+                        android:id="@+id/edtJamBangun"
+                        android:enabled="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="15dp"
+                        android:background="@color/white"
+                        android:clickable="true"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:hint="Masukkan jam bangun Anda"
+                        android:inputType="text"
+                        android:paddingLeft="10dp"
+                        android:paddingTop="8dp"
+                        android:paddingBottom="8dp"
+                        android:textSize="7pt" />
+
+                    <TextView
+                        android:id="@+id/txvNafsu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Apakah Anda mengalami perubahan nafsu makan saat ini?"
+                        android:textColor="@color/black" />
+
+                    <RadioGroup
+                        android:id="@+id/rdgYNMakan"
+                        android:layout_width="200dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="17dp"
+                        android:layout_marginRight="10dp"
+                        android:orientation="vertical">
+
+                        <RadioButton
+                            android:id="@+id/rdbYMakan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Ya" />
+
+                        <RadioButton
+                            android:id="@+id/rdbNMakan"
+                            android:focusable="false"
+                            android:clickable="false"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="-8dp"
+                            android:layout_marginTop="-15dp"
+                            android:scaleX="0.9"
+                            android:scaleY="0.9"
+                            android:text="Tidak" />
+                    </RadioGroup>
+
+                    <TextView
+                        android:id="@+id/txvMakan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="17dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Seberapa sering Anda melewatkan jadwal makan karena mengalami tekanan/perasaan yang tidak baik?"
+                        android:textColor="@color/black" />
+
+                    <SeekBar
+                        android:id="@+id/skbLewatMakan"
+                        android:focusable="false"
+                        android:clickable="false"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="15dp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-12dp"
+                        android:layout_marginBottom="8dp"
+                        android:orientation="horizontal"
+                        android:padding="16dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Tidak pernah" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="end"
+                            android:text="Sangat sering" />
+                    </LinearLayout>
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -29,16 +29,21 @@ public class Tes extends RealmObject {
     private boolean nafsuMakan;
     private int seringLewatMakan;
     private int skor;
+    private String status;
+    private String jawabanDetail;
+    private int skorTidakDihargai, skorDiabaikan, skorTidakPenting, skorNyamanBicara, skorLewatMakan;
 
 
     public Tes(){}
 
-    public Tes(String jurusan, int umur, String gender, String demografi, String cgpa,
+    public Tes(int id, int umur, String gender, String demografi, String cgpa,
                String masalahUang, int seringTidakDihargai, int seringDiabaikan,
                int merasaTidakPenting, String perasaan, int nyamanBicara,
                boolean jadiDiriSendiri, boolean dukunganKeluarga, boolean olahraga,
                boolean susahTidur, String jamTidur, String jamBangun,
-               boolean nafsuMakan, int seringLewatMakan, int skor) {
+               boolean nafsuMakan, int seringLewatMakan, int skor, String jurusan, int skorDiabaikan,
+               int skorLewatMakan, int skorTidakDihargai, int skorTidakPenting, int skorNyamanBicara) {
+        this.id = id;
         this.jurusan = jurusan;
         this.umur = umur;
         this.gender = gender;
@@ -59,6 +64,13 @@ public class Tes extends RealmObject {
         this.nafsuMakan = nafsuMakan;
         this.seringLewatMakan = seringLewatMakan;
         this.skor = skor;
+        this.status = status;
+        this.jawabanDetail = jawabanDetail;
+        this.skorLewatMakan = skorLewatMakan;
+        this.skorTidakDihargai = skorTidakDihargai;
+        this.skorTidakPenting = skorTidakPenting;
+        this.skorNyamanBicara = skorNyamanBicara;
+        this.skorDiabaikan = skorDiabaikan;
     }
 
     public int getId() {
@@ -206,5 +218,60 @@ public class Tes extends RealmObject {
     }
     public void setSkor(int skor) {
         this.skor = skor;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getJawabanDetail() {
+        return jawabanDetail;
+    }
+
+    public void setJawabanDetail(String jawabanDetail) {
+        this.jawabanDetail = jawabanDetail;
+    }
+
+    public int getSkorTidakDihargai() {
+        return skorTidakDihargai;
+    }
+
+    public void setSkorTidakDihargai(int skorTidakDihargai) {
+        this.skorTidakDihargai = skorTidakDihargai;
+    }
+
+    public int getSkorDiabaikan() {
+        return skorDiabaikan;
+    }
+
+    public void setSkorDiabaikan(int skorDiabaikan) {
+        this.skorDiabaikan = skorDiabaikan;
+    }
+
+    public int getSkorTidakPenting() {
+        return skorTidakPenting;
+    }
+
+    public void setSkorTidakPenting(int skorTidakPenting) {
+        this.skorTidakPenting = skorTidakPenting;
+    }
+
+    public int getSkorNyamanBicara() {
+        return skorNyamanBicara;
+    }
+
+    public void setSkorNyamanBicara(int skorNyamanBicara) {
+        this.skorNyamanBicara = skorNyamanBicara;
+    }
+
+    public int getSkorLewatMakan() {
+        return skorLewatMakan;
+    }
+
+    public void setSkorLewatMakan(int skorLewatMakan) {
+        this.skorLewatMakan = skorLewatMakan;
     }
 }

@@ -25,7 +25,7 @@
 
     <fragment
         android:id="@+id/navHistori"
-        android:name="edu.uph.m23si1.eunoia.ui.test.TestFragment"
+        android:name="edu.uph.m23si1.eunoia.ui.histori.HistoriFragment"
         android:label="Histori"
         tools:layout="@layout/fragment_histori" />
 </navigation>

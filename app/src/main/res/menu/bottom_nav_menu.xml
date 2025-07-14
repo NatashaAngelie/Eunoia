@@ -18,7 +18,7 @@
 
     <item
         android:id="@+id/navHistori"
-        android:icon="@drawable/histori"
-        android:title="Histori" />
+        android:icon="@drawable/profil"
+        android:title="Profil" />
 
 </menu>
