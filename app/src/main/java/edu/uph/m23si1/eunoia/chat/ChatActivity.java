@@ -1,5 +1,6 @@
 package edu.uph.m23si1.eunoia.chat;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import edu.uph.m23si1.eunoia.HasilTesActivity;
 import edu.uph.m23si1.eunoia.R;
 import edu.uph.m23si1.eunoia.model.Chat;
 import edu.uph.m23si1.eunoia.model.Tes;
@@ -22,7 +24,7 @@ public class ChatActivity extends AppCompatActivity {
     LinearLayout chatContainer, llySend, llyBack, llyChatHasilTes, llyBoxHasil;
     EditText edtChat;
     ScrollView chatScroll;
-    TextView txvNamaPsi, txvChatPembuka, txvSkorStatus;
+    TextView txvNamaPsi, txvChatPembuka, txvSkorStatus, txvDetail;
     String namaPasien;
     String nama;
     Realm realm;
@@ -39,6 +41,7 @@ public class ChatActivity extends AppCompatActivity {
         llySend = findViewById(R.id.llySend);
         llyBack = findViewById(R.id.llyBack);
         txvChatPembuka = findViewById(R.id.txvChatPembuka);
+        txvDetail = findViewById(R.id.txvDetail);
         llyChatHasilTes = findViewById(R.id.llyChatHasilTes);
         llyBoxHasil = findViewById(R.id.llyBoxHasil);
         txvSkorStatus = findViewById(R.id.txvSkorStatus);
@@ -94,6 +97,18 @@ public class ChatActivity extends AppCompatActivity {
             }
         });
         muatHistoriChat();
+
+        txvDetail.setOnClickListener(v -> {
+            Tes hasilAkhir = realm.where(Tes.class)
+                    .sort("id", Sort.DESCENDING)
+                    .findFirst();
+
+            if (hasilAkhir != null) {
+                Intent intent = new Intent(ChatActivity.this, HasilTesActivity.class);
+                intent.putExtra("idTes", hasilAkhir.getId());
+                startActivity(intent);
+            }
+        });
     }
     private void muatHistoriChat() {
         for (Chat chat : realm.where(Chat.class).findAll()) {
@@ -101,19 +116,21 @@ public class ChatActivity extends AppCompatActivity {
         }
         scrollKeBawah();
     }
-
     private void simpanPesan(String pesan, String sender) {
-        realm.executeTransaction(r -> {
-            Number currentId = r.where(Chat.class).max("id");
-            long nextId = (currentId == null) ? 1 : currentId.longValue() + 1;
+        new Thread(() -> {
+            Realm realm = Realm.getDefaultInstance();
+            realm.executeTransaction(r -> {
+                Number currentId = r.where(Chat.class).max("id");
+                long nextId = (currentId == null) ? 1 : currentId.longValue() + 1;
 
-            Chat chat = r.createObject(Chat.class, nextId);
-            chat.setSender(sender);
-            chat.setMessage(pesan);
-            chat.setTimestamp(System.currentTimeMillis());
-        });
+                Chat chat = r.createObject(Chat.class, nextId);
+                chat.setSender(sender);
+                chat.setMessage(pesan);
+                chat.setTimestamp(System.currentTimeMillis());
+            });
+            realm.close();
+        }).start();
     }
-
     private void tambahPesanUser(String teks, String sender) {
         // Buat TextView baru untuk pesan
         TextView pesanView = new TextView(this);

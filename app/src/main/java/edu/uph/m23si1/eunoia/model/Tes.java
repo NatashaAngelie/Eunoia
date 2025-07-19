@@ -9,7 +9,7 @@ public class Tes extends RealmObject {
     @PrimaryKey
     private int id;
 
-    private String jurusan;
+    //    private String jurusan;
     private int umur;
     private String gender;
     private String demografi;
@@ -41,10 +41,10 @@ public class Tes extends RealmObject {
                int merasaTidakPenting, String perasaan, int nyamanBicara,
                boolean jadiDiriSendiri, boolean dukunganKeluarga, boolean olahraga,
                boolean susahTidur, String jamTidur, String jamBangun,
-               boolean nafsuMakan, int seringLewatMakan, int skor, String jurusan, int skorDiabaikan,
+               boolean nafsuMakan, int seringLewatMakan, int skor, int skorDiabaikan,
                int skorLewatMakan, int skorTidakDihargai, int skorTidakPenting, int skorNyamanBicara) {
         this.id = id;
-        this.jurusan = jurusan;
+//        this.jurusan = jurusan;
         this.umur = umur;
         this.gender = gender;
         this.demografi = demografi;
@@ -78,13 +78,6 @@ public class Tes extends RealmObject {
     }
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getJurusan() {
-        return jurusan;
-    }
-    public void setJurusan(String jurusan) {
-        this.jurusan = jurusan;
     }
 
     public int getUmur() {

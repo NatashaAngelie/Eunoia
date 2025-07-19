@@ -13,11 +13,13 @@ public class Akun extends RealmObject {
     private String jurusan;
     private int umur;
     private String jenisKelamin;
+    private String note;
+    private boolean isLoggedIn;
     public Akun() {
         // constructor kosong wajib untuk Realm
     }
 
-    public Akun(String email, String password, String username, String namaLengkap, String jurusan, int umur, String jenisKelamin) {
+    public Akun(String email, String password, String username, String namaLengkap, String jurusan, int umur, String jenisKelamin, String note, boolean isLoggedIn) {
         this.email = email;
         this.password = password;
         this.username = username;
@@ -25,6 +27,8 @@ public class Akun extends RealmObject {
         this.jurusan = jurusan;
         this.umur = umur;
         this.jenisKelamin = jenisKelamin;
+        this.note = note;
+        this.isLoggedIn = isLoggedIn;
     }
     public String getEmail() {
         return email;
@@ -73,5 +77,19 @@ public class Akun extends RealmObject {
     }
     public void setJenisKelamin(String jenisKelamin) {
         this.jenisKelamin = jenisKelamin;
+    }
+
+    public String getNote() {
+        return note;
+    }
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public boolean isLoggedIn() {
+        return isLoggedIn;
+    }
+    public void setLoggedIn(boolean isLoggedIn) {
+        this.isLoggedIn = isLoggedIn;
     }
 }

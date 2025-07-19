@@ -6,7 +6,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="#A0E7E5" /> <!-- warna border (biru mint) -->
+        android:color="#011936" /> <!-- warna border (biru mint) -->
 
     <corners android:radius="8dp" /> <!-- sudut rounded -->
 </shape>

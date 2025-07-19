@@ -1,5 +1,6 @@
 package edu.uph.m23si1.eunoia.ui.histori;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +17,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import edu.uph.m23si1.eunoia.EditProfilFragment;
+import edu.uph.m23si1.eunoia.LoginActivity;
 import edu.uph.m23si1.eunoia.R;
 import edu.uph.m23si1.eunoia.adapter.HistoriAdapter;
 import edu.uph.m23si1.eunoia.databinding.FragmentHistoriBinding;
+import edu.uph.m23si1.eunoia.model.Akun;
 import edu.uph.m23si1.eunoia.model.Tes;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -27,9 +31,9 @@ import io.realm.Sort;
 public class HistoriFragment extends Fragment {
 
     private FragmentHistoriBinding binding;
-    private LinearLayout llyBack;
+    private LinearLayout llyEdit, llyLogout;
     private Realm realm;
-    private TextView txvJumlah, txvTanggal, txvSkor, txvStatus;
+    private TextView txvJumlah, txvTanggal, txvSkor, txvStatus, txvNamaUser, txvUmurGender;
     private List<Tes> historiList;
     private HistoriAdapter adapter;
 
@@ -53,7 +57,6 @@ public class HistoriFragment extends Fragment {
         adapter = new HistoriAdapter(getContext(), historiList);
         binding.listHistori.setAdapter(adapter);
 
-
         return root;
     }
 
@@ -69,7 +72,39 @@ public class HistoriFragment extends Fragment {
         txvSkor = view.findViewById(R.id.txvSkor);
         txvStatus = view.findViewById(R.id.txvStatus);
 
+        txvNamaUser = view.findViewById(R.id.txvNamaUser);
+        txvUmurGender = view.findViewById(R.id.txvUmurGender);
+        llyEdit = view.findViewById(R.id.llyEdit);
+        llyLogout = view.findViewById(R.id.llyLogout);
+
         tampilkanDataHistori();
+
+        Akun akun = realm.where(Akun.class).equalTo("isLoggedIn", true).findFirst();
+
+        if (akun != null) {
+            txvNamaUser.setText(akun.getNamaLengkap());
+            txvUmurGender.setText(akun.getUmur() + " tahun | " + akun.getJenisKelamin());
+        }
+
+        llyEdit.setOnClickListener(v -> {
+            bukaEditProfil();
+        });
+
+        llyLogout.setOnClickListener(v -> {
+            realm.executeTransactionAsync(r -> {
+                Akun a = r.where(Akun.class).equalTo("isLoggedIn", true).findFirst();
+                if (a != null) {
+                    a.setLoggedIn(false);
+                }
+            }, () -> {
+                // On success, pindah ke LoginActivity
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                requireActivity().finish();
+            }, error -> {
+                // On error (opsional)
+                error.printStackTrace();
+            });
+        });
     }
 
     private void tampilkanDataHistori() {
@@ -94,7 +129,10 @@ public class HistoriFragment extends Fragment {
             txvStatus.setText("Status: -");
         }
     }
-
+    private void bukaEditProfil() {
+        EditProfilFragment editProfilFragment = new EditProfilFragment();
+        editProfilFragment.show(getParentFragmentManager(), "edit_profil");
+    }
 
     @Override
     public void onDestroyView() {

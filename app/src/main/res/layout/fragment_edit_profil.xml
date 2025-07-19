@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditProfilFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@drawable/rounded"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/bg">
+
+            <TextView
+                android:text="Edit Profil"
+                android:textSize="9pt"
+                android:textStyle="bold"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black" />
+
+            <!-- Form isian di sini -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Lengkap"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <EditText
+                android:id="@+id/edtNama"
+                android:hint="Nama Lengkap"
+                android:background="@drawable/edt_border"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Username (opsional)"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <EditText
+                android:id="@+id/edtUsername"
+                android:hint="Username"
+                android:background="@drawable/edt_border"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Umur"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <EditText
+                android:id="@+id/edtUmur"
+                android:hint="Umur"
+                android:background="@drawable/edt_border"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Kelamin"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <RadioGroup
+                android:id="@+id/rdgGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+                <RadioButton
+                    android:id="@+id/rdbLaki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Laki-laki"
+                    android:textColor="@color/black"
+                    android:textSize="7pt"
+                    android:buttonTint="@color/header"/>
+                <RadioButton
+                    android:id="@+id/rdbPerempuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perempuan"
+                    android:layout_marginLeft="50dp"
+                    android:textColor="@color/black"
+                    android:textSize="7pt"
+                    android:buttonTint="@color/header"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jurusan"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <EditText
+                android:id="@+id/edtJurusan"
+                android:hint="Jurusan"
+                android:background="@drawable/edt_border"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Note to Self (opsional)"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/black"
+                android:textSize="8pt"/>
+            <EditText
+                android:id="@+id/edtNote"
+                android:hint="Silahkan ketikkan..."
+                android:background="@drawable/edt_border"
+                android:padding="12dp"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginBottom="10dp"
+                android:inputType="textMultiLine"
+                android:gravity="start|top"/>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:text="Simpan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"/>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

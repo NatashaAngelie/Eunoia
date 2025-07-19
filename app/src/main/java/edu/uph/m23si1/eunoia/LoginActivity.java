@@ -49,6 +49,13 @@ public class LoginActivity extends AppCompatActivity {
         initData();
         realm = Realm.getDefaultInstance();
 
+        realm.executeTransaction(r -> {
+            RealmResults<Akun> semuaAkun = r.where(Akun.class).equalTo("isLoggedIn", true).findAll();
+            for (Akun a : semuaAkun) {
+                a.setLoggedIn(false);
+            }
+        });
+
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         btnLogin = findViewById(R.id.btnLogin);
@@ -68,6 +75,9 @@ public class LoginActivity extends AppCompatActivity {
                     .findFirst();
 
             if (akun != null) {
+                realm.executeTransaction(r -> {
+                    akun.setLoggedIn(true);
+                });
                 // login berhasil
                 Toast.makeText(this, "Login berhasil!", Toast.LENGTH_SHORT).show();
 
@@ -95,16 +105,16 @@ public class LoginActivity extends AppCompatActivity {
 
         List<Akun> daftarAkun = new ArrayList<>();
 
-        daftarAkun.add(new Akun("icha.septina@gmail.com", "12345", "", "Icha Septina", "Psikologi", 18, "Perempuan"));
-        daftarAkun.add(new Akun("yovara.sepp@gmail.com", "12345", "", "Asep Yovara", "Teknik Informatika", 19, "Laki-laki"));
-        daftarAkun.add(new Akun("seny.caroline@gmail.com", "12345", "", "Seni Caroline", "Ilmu Komunikasi", 20, "Perempuan"));
-        daftarAkun.add(new Akun("rea.parulian@gmail.com", "12345", "", "Rea Parulian", "Kedokteran", 22, "Perempuan"));
-        daftarAkun.add(new Akun("rhoma@gmail.com", "12345", "", "Rhoma", "Hukum", 23, "Laki-laki"));
-        daftarAkun.add(new Akun("irham089@gmail.com", "12345", "", "Irham", "Manajemen", 19, "Laki-laki"));
-        daftarAkun.add(new Akun("teti.supratto@gmail.com", "12345", "", "Teti Supratto", "Akuntansi", 18, "Laki-laki"));
-        daftarAkun.add(new Akun("susan.min@gmail.com", "12345", "", "Susan Min", "Farmasi", 21, "Perempuan"));
-        daftarAkun.add(new Akun("mahesa@gmail.com", "12345", "", "Mahesa", "Arsitektur", 22, "Perempuan"));
-        daftarAkun.add(new Akun("sujan.pasmir@gmail.com", "12345", "", "Sujan Pasmir", "Teknik Mesin", 20, "Laki-laki"));
+        daftarAkun.add(new Akun("icha.septina@gmail.com", "12345", "", "Icha Septina", "Psikologi", 18, "Perempuan","", false));
+        daftarAkun.add(new Akun("yovara.sepp@gmail.com", "12345", "", "Asep Yovara", "Teknik Informatika", 19, "Laki-laki","", false));
+        daftarAkun.add(new Akun("seny.caroline@gmail.com", "12345", "", "Seni Caroline", "Ilmu Komunikasi", 20, "Perempuan","", false));
+        daftarAkun.add(new Akun("rea.parulian@gmail.com", "12345", "", "Rea Parulian", "Kedokteran", 22, "Perempuan", "", false));
+        daftarAkun.add(new Akun("rhoma@gmail.com", "12345", "", "Rhoma", "Hukum", 23, "Laki-laki", "", false));
+        daftarAkun.add(new Akun("irham089@gmail.com", "12345", "", "Irham", "Manajemen", 19, "Laki-laki","", false));
+        daftarAkun.add(new Akun("teti.supratto@gmail.com", "12345", "", "Teti Supratto", "Akuntansi", 18, "Laki-laki","", false));
+        daftarAkun.add(new Akun("susan.min@gmail.com", "12345", "", "Susan Min", "Farmasi", 21, "Perempuan","", false));
+        daftarAkun.add(new Akun("mahesa@gmail.com", "12345", "", "Mahesa", "Arsitektur", 22, "Perempuan","", false));
+        daftarAkun.add(new Akun("sujan.pasmir@gmail.com", "12345", "", "Sujan Pasmir", "Teknik Mesin", 20, "Laki-laki","", false));
 // Masukkan ke Realm
         realm.executeTransaction(r -> {
             r.insert(daftarAkun);

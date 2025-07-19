@@ -21,6 +21,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import edu.uph.m23si1.eunoia.R;
 import edu.uph.m23si1.eunoia.databinding.FragmentTestBinding;
@@ -33,7 +36,7 @@ public class TestFragment extends Fragment {
     ScrollView llyForm;
     Button btnMulai, btnKirim;
     ImageView imvHasil;
-    TextView txvH1, txvH2, txvStatus, txvDeskripsi, txvSkor;
+    TextView txvH1, txvH2, txvStatus, txvDeskripsi, txvSkor, txvKonsul;
     EditText edtJurusan, edtUmur, edtPerasaan, edtJamTidur, edtJamBangun;
     RadioButton rdbLaki, rdbPerempuan, rdbDesa, rdbKota, rdbTinggi, rdbSedang, rdbRendah, rdbUangSignifikan, rdbUangSedang, rdbUangRingan, rdbYDiriSendiri, rdbYDukungan, rdbYOlahraga, rdbYTidur, rdbYMakan;
     SeekBar skbTidakDihargai, skbDiabaikan, skbTidakPenting, skbNyamanBicara, skbLewatMakan;
@@ -63,11 +66,12 @@ public class TestFragment extends Fragment {
         txvH1 = root.findViewById(R.id.txvH1);
         txvH2 = root.findViewById(R.id.txvH2);
         txvStatus = root.findViewById(R.id.txvStatus);
+        txvKonsul = root.findViewById(R.id.txvKonsul);
         txvDeskripsi = root.findViewById(R.id.txvDeskripsi);
         txvSkor = root.findViewById(R.id.txvSkor);
         imvHasil = root.findViewById(R.id.imvHasil);
 
-        edtJurusan = root.findViewById(R.id.edtJurusan);
+//        edtJurusan = root.findViewById(R.id.edtJurusan);
         edtUmur = root.findViewById(R.id.edtUmur);
         edtPerasaan = root.findViewById(R.id.edtPerasaan);
         edtJamTidur = root.findViewById(R.id.edtJamTidur);
@@ -113,10 +117,16 @@ public class TestFragment extends Fragment {
 
                     Tes data = realm.createObject(Tes.class, nextId);
 
-                    data.setJurusan(edtJurusan.getText().toString());
+//                    data.setJurusan(edtJurusan.getText().toString());
                     data.setUmur(Integer.parseInt(edtUmur.getText().toString()));
                     data.setGender(rdbLaki.isChecked() ? "Laki-laki" : "Perempuan");
                     data.setDemografi(rdbDesa.isChecked() ? "Pedesaan" : "Perkotaan");
+
+                    data.setSkorTidakDihargai(skbTidakDihargai.getProgress());
+                    data.setSkorDiabaikan(skbDiabaikan.getProgress());
+                    data.setSkorTidakPenting(skbTidakPenting.getProgress());
+                    data.setSkorNyamanBicara(skbNyamanBicara.getProgress());
+                    data.setSkorLewatMakan(skbLewatMakan.getProgress());
 
                     if (rdbTinggi.isChecked()) {
                         data.setCgpa("3.50 - 4.00");
@@ -177,6 +187,12 @@ public class TestFragment extends Fragment {
                 edtJamBangun.setText(waktu);
             }, 0, 0, true); // default jam bangun jam 00:00
             picker.show();
+        });
+
+        txvKonsul.setOnClickListener(v -> {
+            Navigation.findNavController(v).navigate(R.id.navKonsul);
+            BottomNavigationView bottomNav = getActivity().findViewById(R.id.nav_view);
+            bottomNav.setSelectedItemId(R.id.navKonsul);
         });
 
         return root;
@@ -254,22 +270,17 @@ public class TestFragment extends Fragment {
 
         skor += skorTidur;
 
-        skor += konversiSeekBar(skbTidakDihargai);
-        skor += konversiSeekBar(skbDiabaikan);
-        skor += konversiSeekBar(skbTidakPenting);
-        skor += 4 - konversiSeekBar(skbNyamanBicara);
-        skor += konversiSeekBar(skbLewatMakan);
+        skor += skbTidakDihargai.getProgress();
+        skor += skbDiabaikan.getProgress();
+        skor += skbTidakPenting.getProgress();
+        skor += 4 - skbNyamanBicara.getProgress();
+        skor += skbLewatMakan.getProgress();
         if (rdbYTidur.isChecked()) skor += 10;
         if (rdbYMakan.isChecked()) skor += 10;
         if (!rdbYDukungan.isChecked()) skor += 10;
         if (!rdbYOlahraga.isChecked()) skor += 10;
         if (!rdbYDiriSendiri.isChecked()) skor += 10;
         return Math.min(skor, 100);
-    }
-    private int konversiSeekBar(SeekBar skb) {
-        double progress = skb.getProgress();
-        double value = (progress / 100.0) * 4.0;
-        return (int) Math.round(value);
     }
     private String hitungStatusDariSkor(int skor) {
         if (skor <= 33) {
@@ -286,7 +297,6 @@ public class TestFragment extends Fragment {
         txvH1.setText("Hasil");
         txvH2.setText("Berikut adalah hasil test Anda");
         txvSkor.setText("Skor kamu: " + skor);
-
 
         if (skor <= 33) {
             // Tidak Depresi
