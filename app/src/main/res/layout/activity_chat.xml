@@ -44,7 +44,7 @@
 
             <TextView
                 android:id="@+id/txvNamaPsi"
-                android:layout_width="500dp"
+                android:layout_width="400dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -138,7 +138,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Klik untuk Informasi Lebih Lanjut"
-                            android:textColor="@color/blue"
+                            android:textColor="@color/dark_blue"
                             android:textStyle="bold" />
                     </LinearLayout>
                 </LinearLayout>
@@ -169,7 +169,7 @@
                 android:layout_gravity="center">
                 <EditText
                     android:id="@+id/edtChat"
-                    android:layout_width="290dp"
+                    android:layout_width="240dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:hint="Ketik pesan..."

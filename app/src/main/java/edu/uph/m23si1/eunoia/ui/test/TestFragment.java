@@ -174,7 +174,7 @@ public class TestFragment extends Fragment {
         });
 
         edtJamTidur.setOnClickListener(v -> {
-            TimePickerDialog picker = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+            TimePickerDialog picker = new TimePickerDialog(getContext(), R.style.CustomTimePickerDialog, (view, hourOfDay, minute) -> {
                 String waktu = String.format("%02d:%02d", hourOfDay, minute);
                 edtJamTidur.setText(waktu);
             }, 0, 0, true); // default jam tidur jam 00:00
@@ -182,7 +182,7 @@ public class TestFragment extends Fragment {
         });
 
         edtJamBangun.setOnClickListener(v -> {
-            TimePickerDialog picker = new TimePickerDialog(getContext(), (view, hourOfDay, minute) -> {
+            TimePickerDialog picker = new TimePickerDialog(getContext(), R.style.CustomTimePickerDialog, (view, hourOfDay, minute) -> {
                 String waktu = String.format("%02d:%02d", hourOfDay, minute);
                 edtJamBangun.setText(waktu);
             }, 0, 0, true); // default jam bangun jam 00:00
@@ -272,7 +272,7 @@ public class TestFragment extends Fragment {
 
         skor += skbTidakDihargai.getProgress();
         skor += skbDiabaikan.getProgress();
-        skor += skbTidakPenting.getProgress();
+        skor += 4 - skbTidakPenting.getProgress();
         skor += 4 - skbNyamanBicara.getProgress();
         skor += skbLewatMakan.getProgress();
         if (rdbYTidur.isChecked()) skor += 10;

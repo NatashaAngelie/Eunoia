@@ -41,7 +41,7 @@
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="750dp"
+                android:layout_width="600dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
@@ -80,16 +80,16 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:background="@drawable/rounded"
+                android:backgroundTint="@color/header"
+                android:layout_marginTop="10dp">
 
                 <ScrollView
                     android:id="@+id/llyForm"
                     android:layout_width="380dp"
-                    android:layout_height="780dp"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/rounded"
-                    android:backgroundTint="@color/header"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:paddingRight="10dp"
